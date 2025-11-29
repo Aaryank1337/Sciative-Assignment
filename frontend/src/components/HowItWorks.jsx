@@ -106,7 +106,7 @@ const HowItWorks = () => {
                 data-aos-delay={index * 150}
               >
                 {/* Number Circle */}
-                <div className="w-16 h-16 flex items-center justify-center rounded-full bg-[#7dd3a0] text-white font-bold text-2xl mb-6 shadow-lg">
+                <div className="w-16 h-16 flex items-center justify-center rounded-full bg-emerald-400 text-white font-bold text-2xl mb-6 shadow-lg">
                   {step.number}
                 </div>
                 {/* Title */}
@@ -136,7 +136,7 @@ const HowItWorks = () => {
           </p>
           <button
             onClick={()=>scrollToSection("courses")}
-            className="bg-[#6366f1] hover:bg-[#5558e3] text-white font-semibold py-3.5 px-10 rounded-lg shadow-lg transition-all duration-300 transform hover:-translate-y-0.5 hover:shadow-xl uppercase tracking-wide text-sm"
+            className="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 px-8 rounded-lg shadow-md transition-all duration-300 transform hover:-translate-y-0.5 hover:shadow-lg"
           >
             Explore courses
           </button>

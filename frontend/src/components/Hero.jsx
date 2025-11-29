@@ -8,17 +8,10 @@ const HeroSection = () => {
 
   return (
     <section className="bg-linear-to-b from-indigo-50 to-indigo-50 pt-16 pb-20 sm:pt-20 sm:pb-24 lg:pt-24 lg:pb-32">
-      <style jsx>{`
-        @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&display=swap");
-        h1 {
-          font-family: "Playfair Display", serif;
-        }
-      `}</style>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         {/* Heading and Subheading */}
         <h1
-          className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-gray-900 leading-tight mb-4"
-          style={{ fontFamily: "'Playfair Display', serif" }}
+          className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-gray-900 leading-tight mb-4"
         >
           Get The Best Online <br className="hidden sm:inline" />
           <span className="text-indigo-700">Learning Service</span>
@@ -28,7 +21,7 @@ const HeroSection = () => {
           readable content of a page when looking at its layout.
         </p>
 
-        <button onClick={()=>scrollToSection("courses")} className="bg-[#6366f1] hover:bg-[#5558e3] text-white font-semibold py-3 px-8 rounded-lg shadow-lg text-lg transition duration-300 ease-in-out transform hover:-translate-y-1">
+        <button onClick={()=>scrollToSection("courses")} className="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 px-8 rounded-lg shadow-md transition-all duration-300 transform hover:-translate-y-0.5 hover:shadow-lg">
           Start a course
         </button>
 

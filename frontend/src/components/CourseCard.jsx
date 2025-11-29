@@ -5,8 +5,8 @@ import { BookOpen, User } from 'lucide-react';
 // CourseCard Component
 const CourseCard = ({ course }) => {
   const priceBadgeClass = course.isFree 
-    ? "bg-[#86efac] text-gray-800" 
-    : "bg-[#86efac] text-gray-800";
+    ? "bg-emerald-100 text-emerald-700" 
+    : "bg-emerald-100 text-emerald-700";
 
   const tagBadgeClass = "bg-white text-gray-700 shadow-lg";
 
@@ -22,7 +22,7 @@ const CourseCard = ({ course }) => {
         />
         
         {/* TAG BADGE (Bottom Left) */}
-        <div className={`absolute bottom-5 left-5 text-xs font-medium px-5 py-2 rounded-full ${tagBadgeClass}`}>
+        <div className={`bg-indigo-100 text-indigo-700 absolute bottom-5 left-5 text-xs font-medium px-5 py-2 rounded-full ${tagBadgeClass}`}>
           {course.tag}
         </div>
 
@@ -34,10 +34,10 @@ const CourseCard = ({ course }) => {
       
       {/* Card Content */}
       <div className="p-6">
-        <h3 className="text-xl font-bold text-[#1e3a5f] mb-2 leading-tight">
+        <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-2">
           {course.title}
         </h3>
-        <p className="text-gray-600 text-sm  mb-2 leading-relaxed">
+        <p className="text-gray-600 text-sm md:text-base mb-2 leading-relaxed">
           {course.description}
         </p>
 

@@ -39,7 +39,7 @@ const CoursesSection = () => {
           </h2>
           <button
             onClick={()=>scrollToSection("courses")}
-            className="bg-[#6366f1] hover:bg-[#5558e3] text-white font-semibold py-3 px-8 rounded-lg transition-all duration-300 text-sm tracking-wider uppercase shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+            className="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2.5 px-6 rounded-lg shadow-md transition-all duration-300 transform hover:-translate-y-0.5 hover:shadow-lg"
           >
             EXPLORE COURSES
           </button>

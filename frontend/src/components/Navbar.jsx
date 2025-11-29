@@ -62,7 +62,7 @@ const Navbar = () => {
             {/* Desktop Buttons */}
             <div className="flex items-center space-x-4 ml-4">
               <button
-                className="text-violet-700 hover:bg-violet-700 hover:text-white border-2 border-violet-700 rounded-lg font-medium py-2 px-5 transition duration-150 ease-in-out transform hover:scale-[1.02]"
+                className="text-indigo-600 hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 rounded-lg font-medium py-2 px-5 transition duration-150 ease-in-out transform hover:scale-[1.02]"
               >
                 Log in
               </button>
@@ -108,7 +108,7 @@ const Navbar = () => {
             </a>
           ))}
           <div className="pt-4 border-t border-gray-100">
-            <button className="w-full text-left text-gray-700 hover:bg-indigo-50 hover:text-indigo-700 block px-3 py-2 rounded-md text-base font-medium">
+            <button className="w-full text-left text-indigo-600 hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 block px-3 py-2 rounded-md text-base font-medium">
               Log in
             </button>
             <button className="mt-2 w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-3 rounded-lg text-base shadow-md transition duration-150 ease-in-out">

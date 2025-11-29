@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useMemo } from "react";
 import { fetchSeatInfo } from "../utils/api";
 
-const ITEMS_PER_PAGE = 6;
+const ITEMS_PER_PAGE = 5;
 
 const SeatTable = () => {
   const [seats, setSeats] = useState([]);
@@ -60,7 +60,7 @@ const SeatTable = () => {
   }
 
   return (
-    <div className="overflow-x-auto shadow-xl rounded-lg border border-gray-200 w-full">
+    <div className="overflow-x-auto shadow-xl  border border-gray-200 w-full">
       <table className="min-w-full divide-y divide-gray-200">
         <thead className="bg-indigo-100">
           <tr>

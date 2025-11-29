@@ -33,14 +33,14 @@ const StarRating = ({ rating }) => {
 };
 
 const StaticTestimonialImage = () => (
-  <div className="relative w-full lg:w-1/2 flex justify-center items-center mb-2 lg:mb-0 lg:pr-10 min-h-[400px]">
-    <div className="relative w-[350px] h-[450px] lg:w-[400px] lg:h-[500px]">
+  <div className="relative w-full lg:w-1/2 flex justify-center items-center mb-2 lg:mb-0 lg:pr-10">
+    <div className="relative w-full max-w-[350px] lg:max-w-[400px] aspect-7/9">
       <img
         src={STATIC_STUDENT_IMAGE}
         alt="Student Testimonial"
-        className="absolute pl-4 top-0 left-0 w-full h-full object-contain z-60"
+        className="w-full h-full object-contain pl-4"
       />
-    </div>  
+    </div>
   </div>
 );
 
@@ -104,10 +104,10 @@ const TestimonialsSection = () => {
   return (
     <section className="py-12 bg-linear-to-b from-indigo-50 to-indigo-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 text-center">
+        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 text-center">
           What Our Student Says
         </h2>
-        <div className="flex flex-col lg:flex-row items-center justify-center  max-w-5xl mx-auto min-h-[400px] lg:p-12">
+        <div className="flex flex-col lg:flex-row items-center justify-center max-w-5xl mx-auto min-h-[400px] lg:p-6">
           <StaticTestimonialImage />
           <Swiper
             modules={[Pagination, Autoplay]}
