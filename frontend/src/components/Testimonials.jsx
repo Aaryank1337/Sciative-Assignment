@@ -15,6 +15,7 @@ const customStyles = `
     margin: 0 6px !important;
   }
   .swiper-pagination-bullet-active {
+  margin-top: 2rem !important;
     background-color: #4f46e5 !important;
   }
 `;
@@ -129,7 +130,7 @@ const TestimonialsSection = () => {
             pagination={{ clickable: true }}
             autoplay={{ delay: 5000, disableOnInteraction: false }}
             loop={true}
-            className="w-full lg:w-1/2 h-full pb-16"
+            className="w-full lg:w-1/2 h-full pb-20"
           >
             {testimonials.map((testimonial, index) => (
               <SwiperSlide
