@@ -7,16 +7,27 @@ import { fetchTestimonials } from "../utils/api";
 import "swiper/css";
 import "swiper/css/pagination";
 
-// Custom styles for Swiper pagination
+// Enhanced custom styles for Swiper pagination
 const customStyles = `
-  .swiper-pagination-bullet {
-    width: 12px !important;
-    height: 12px !important;
-    margin: 0 6px !important;
+  .testimonial-swiper {
+    position: relative;
   }
-  .swiper-pagination-bullet-active {
-  margin-top: 2rem !important;
+  .testimonial-swiper .swiper-pagination {
+    bottom: 0px !important;
+    margin-top: 20px;
+  }
+  .testimonial-swiper .swiper-pagination-bullet {
+    width: 10px !important;
+    height: 10px !important;
+    margin: 0 5px !important;
+    background-color: #c7d2fe !important;
+    opacity: 0.7 !important;
+    transition: all 0.3s ease !important;
+  }
+  .testimonial-swiper .swiper-pagination-bullet-active {
     background-color: #4f46e5 !important;
+    opacity: 1 !important;
+    transform: scale(1.2) !important;
   }
 `;
 
@@ -58,8 +69,8 @@ const StaticTestimonialImage = () => (
 );
 
 const TestimonialContent = ({ testimonial }) => (
-  <div className="w-full lg:w-1/2 text-center lg:text-left p-4">
-    <blockquote className="text-gray-600 italic mb-4 text-lg leading-relaxed relative">
+  <div className="w-full lg:w-1/2 text-center lg:text-left p-4 pb-12"> {/* Added pb-12 */}
+    <blockquote className="text-gray-600 italic mb-6 text-lg leading-relaxed relative"> {/* Increased mb-6 */}
       {/* Big Quote Icon */}
       <span className="absolute -top-6 left-1/2 lg:left-0 transform -translate-x-1/2 lg:translate-x-0 text-indigo-200 text-7xl font-bold -z-10 opacity-70">
         "
@@ -68,12 +79,12 @@ const TestimonialContent = ({ testimonial }) => (
       {testimonial.comment}
     </blockquote>
 
-    <div className="flex justify-center lg:justify-start mt-4 mb-2">
+    <div className="flex justify-center lg:justify-start mt-6 mb-3"> {/* Increased margins */}
       <StarRating rating={parseFloat(testimonial.rating)} />
     </div>
 
-    <p className="mt-3 font-semibold text-gray-900">{testimonial.comment_by}</p>
-    <p className="text-sm text-gray-500">{testimonial.location || "Poland"}</p>
+    <p className="mt-4 font-semibold text-gray-900">{testimonial.comment_by}</p> {/* Increased mt-4 */}
+    <p className="text-sm text-gray-500 mt-1">{testimonial.location || "Poland"}</p> {/* Added mt-1 */}
   </div>
 );
 
@@ -118,7 +129,7 @@ const TestimonialsSection = () => {
     <section className="py-12 bg-linear-to-b from-indigo-50 to-indigo-50">
       <style>{customStyles}</style>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 text-center">
+        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 text-center mb-12"> {/* Added mb-12 */}
           What Our Student Says
         </h2>
         <div className="flex flex-col lg:flex-row items-center justify-center max-w-5xl mx-auto min-h-[400px] lg:p-6">
@@ -127,10 +138,12 @@ const TestimonialsSection = () => {
             modules={[Pagination, Autoplay]}
             spaceBetween={30}
             slidesPerView={1}
-            pagination={{ clickable: true }}
+            pagination={{ 
+              clickable: true,
+            }}
             autoplay={{ delay: 5000, disableOnInteraction: false }}
             loop={true}
-            className="w-full lg:w-1/2 h-full pb-20"
+            className="testimonial-swiper w-full lg:w-1/2 h-full" // Removed pb-20, using custom class
           >
             {testimonials.map((testimonial, index) => (
               <SwiperSlide
