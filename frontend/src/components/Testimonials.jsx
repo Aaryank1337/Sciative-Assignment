@@ -7,9 +7,21 @@ import { fetchTestimonials } from "../utils/api";
 import "swiper/css";
 import "swiper/css/pagination";
 
+// Custom styles for Swiper pagination
+const customStyles = `
+  .swiper-pagination-bullet {
+    width: 12px !important;
+    height: 12px !important;
+    margin: 0 6px !important;
+  }
+  .swiper-pagination-bullet-active {
+    background-color: #4f46e5 !important;
+  }
+`;
+
 const STATIC_STUDENT_IMAGE = "/images/person.png";
 
-// Helper Component for Star rating (kept the same)
+// Helper Component for Star rating
 const StarRating = ({ rating }) => {
   const fullStars = Math.floor(rating);
   const emptyStars = Math.max(0, 5 - fullStars);
@@ -48,8 +60,8 @@ const TestimonialContent = ({ testimonial }) => (
   <div className="w-full lg:w-1/2 text-center lg:text-left p-4">
     <blockquote className="text-gray-600 italic mb-4 text-lg leading-relaxed relative">
       {/* Big Quote Icon */}
-      <span className="absolute -top-6 lg:left-0 transform -translate-x-1/2 lg:translate-x-0 text-indigo-200 text-7xl font-bold -z-10 opacity-70">
-        “
+      <span className="absolute -top-6 left-1/2 lg:left-0 transform -translate-x-1/2 lg:translate-x-0 text-indigo-200 text-7xl font-bold -z-10 opacity-70">
+        "
       </span>
       <br />
       {testimonial.comment}
@@ -103,6 +115,7 @@ const TestimonialsSection = () => {
 
   return (
     <section className="py-12 bg-linear-to-b from-indigo-50 to-indigo-50">
+      <style>{customStyles}</style>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 text-center">
           What Our Student Says
