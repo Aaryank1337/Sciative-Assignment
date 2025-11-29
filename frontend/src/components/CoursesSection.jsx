@@ -1,5 +1,6 @@
 import React from "react";
 import CourseCard from "./CourseCard";
+import { scrollToSection } from '../utils/scroll';
 
 const CoursesSection = () => {
   const courses = [
@@ -29,19 +30,6 @@ const CoursesSection = () => {
     },
   ];
 
-    const scrollToCourses = () => {
-    const section = document.getElementById("courses");
-    if (section) {
-      const navbarHeight = 64;
-      const sectionTop = section.offsetTop - navbarHeight;
-
-      window.scrollTo({
-        top: sectionTop,
-        behavior: "smooth",
-      });
-    }
-  };
-
   return (
     <section className="py-10 sm:py-14 bg-linear-to-b from-white to-gray-50">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -50,8 +38,8 @@ const CoursesSection = () => {
             New Courses
           </h2>
           <button
-            onClick={scrollToCourses}
-            className="bg-[#7c3aed] hover:bg-[#5558e3] text-white font-semibold py-3 px-8 rounded-lg transition-all duration-300 text-sm tracking-wider uppercase shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+            onClick={()=>scrollToSection("courses")}
+            className="bg-[#6366f1] hover:bg-[#5558e3] text-white font-semibold py-3 px-8 rounded-lg transition-all duration-300 text-sm tracking-wider uppercase shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
           >
             EXPLORE COURSES
           </button>

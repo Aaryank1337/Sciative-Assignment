@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { Menu, X } from "lucide-react";
+import { scrollToSection } from '../utils/scroll';
 
 const navItems = ["Home", "Programs", "Courses", "Admission", "Testimonial"];
+const LOGO_URL = "/images/logo.png";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -12,20 +14,8 @@ const Navbar = () => {
 
   const handleScrollToSection = (e, item) => {
     e.preventDefault();
-    const sectionId = item.toLowerCase();
-    const section = document.getElementById(sectionId);
-
-    if (section) {
-      const navbarHeight = 64; 
-      const sectionTop = section.offsetTop - navbarHeight;
-
-      window.scrollTo({
-        top: sectionTop,
-        behavior: "smooth",
-      });
-    }
-
-    setIsOpen(false); 
+    scrollToSection(item.toLowerCase());
+    setIsOpen(false);
   };
 
   return (
@@ -34,10 +24,26 @@ const Navbar = () => {
         <div className="flex justify-between items-center h-16">
           {/* Logo/Brand */}
           <div className="shrink-0 flex items-center">
-            <span className="text-xl font-bold text-gray-900">
-              <span className="text-2xl font-extrabold text-indigo-700">E</span>
-              ducate
-            </span>
+            <a
+              href="#home"
+              className="flex items-center"
+              onClick={(e) => handleScrollToSection(e, "Home")}
+            >
+              <img
+                className="h-9 w-auto rounded-md"
+                src={LOGO_URL}
+                alt="Educate"
+                onError={(e) => {
+                  e.currentTarget.onerror = null;
+                  e.currentTarget.style.display = "none";
+                  const textFallback = document.createElement("span");
+                  textFallback.className = "text-xl font-bold text-gray-900";
+                  textFallback.innerHTML =
+                    '<span class="text-2xl font-extrabold text-indigo-700">E</span>ducate';
+                  e.currentTarget.parentNode.appendChild(textFallback);
+                }}
+              />
+            </a>
           </div>
 
           {/* Desktop Menu Links */}
@@ -55,10 +61,12 @@ const Navbar = () => {
 
             {/* Desktop Buttons */}
             <div className="flex items-center space-x-4 ml-4">
-              <button className="text-gray-700 hover:text-indigo-700 font-medium py-2 px-3 transition duration-150 ease-in-out">
+              <button
+                className="text-violet-700 hover:bg-violet-700 hover:text-white border-2 border-violet-700 rounded-lg font-medium py-2 px-5 transition duration-150 ease-in-out transform hover:scale-[1.02]"
+              >
                 Log in
               </button>
-              <button className="bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-5 rounded-lg shadow-md transition duration-150 ease-in-out transform hover:scale-[1.02]">
+              <button className="bg-[#7dd3a0] hover:bg-green-700 text-white font-semibold py-2 px-5 rounded-lg shadow-md transition duration-150 ease-in-out transform hover:scale-[1.02]">
                 Registration
               </button>
             </div>

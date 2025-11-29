@@ -1,6 +1,7 @@
-import React, { useEffect } from 'react';
-import AOS from 'aos';
-import 'aos/dist/aos.css';
+import React, { useEffect } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
+import { scrollToSection } from '../utils/scroll';
 
 const steps = [
   {
@@ -19,29 +20,58 @@ const steps = [
 
 // SVG Curved Dotted Line Component
 const CurvedLine = ({ direction, index }) => {
-  const pathD = direction === 'down' 
-    ? "M 0 20 Q 60 60, 120 20"
-    : "M 0 40 Q 60 0, 120 40";
-  
+  // Horizontal path for desktop (curved)
+  const horizontalPath =
+    direction === "down" ? "M 0 20 Q 50 60, 100 20" : "M 0 40 Q 50 0, 100 40";
+
+  // Vertical curved path for mobile (alternating left/right curves)
+  const verticalPath =
+    direction === "down"
+      ? "M 30 0 Q 50 25, 30 50" 
+      : "M 30 0 Q 10 25, 30 50"; 
+
   return (
-    <svg 
-      className="hidden md:block mx-4 mt-6" 
-      width="120" 
-      height="60" 
-      viewBox="0 0 120 60"
-      style={{ flexShrink: 0 }}
-      data-aos="fade"
-      data-aos-delay={index * 150 + 100}
-    >
-      <path
-        d={pathD}
-        fill="none"
-        stroke="#9ca3af"
-        strokeWidth="2"
-        strokeDasharray="6 6"
-        strokeLinecap="round"
-      />
-    </svg>
+    <>
+      {/* Mobile: Vertical dotted line */}
+      <svg
+        className="block md:hidden my-4 mx-auto"
+        width="60"
+        height="50"
+        viewBox="0 0 60 50"
+        data-aos="fade"
+        data-aos-delay={index * 150 + 100}
+      >
+        <path
+          d={verticalPath}
+          fill="none"
+          stroke="#9ca3af"
+          strokeWidth="2"
+          strokeDasharray="6 6"
+          strokeLinecap="round"
+        />
+      </svg>
+
+      {/* Desktop: Horizontal curved line */}
+      <svg
+        className="hidden md:block mx-2 lg:mx-4 mt-6 w-20 lg:w-28 xl:w-32"
+        height="60"
+        viewBox="0 0 100 60"
+        preserveAspectRatio="none"
+        style={{ flexShrink: 0 }}
+        data-aos="fade"
+        data-aos-delay={index * 150 + 100}
+      >
+        <path
+          d={horizontalPath}
+          fill="none"
+          stroke="#9ca3af"
+          strokeWidth="2"
+          strokeDasharray="6 6"
+          strokeLinecap="round"
+          vectorEffect="non-scaling-stroke"
+        />
+      </svg>
+    </>
   );
 };
 
@@ -50,41 +80,27 @@ const HowItWorks = () => {
   useEffect(() => {
     AOS.init({
       duration: 1000,
-      easing: 'ease-in-out',
-      once: true, 
-      offset: 100, 
+      easing: "ease-in-out",
+      once: true,
+      offset: 100,
     });
   }, []);
 
-      const scrollToCourses = () => {
-    const section = document.getElementById("courses");
-    if (section) {
-      const navbarHeight = 64;
-      const sectionTop = section.offsetTop - navbarHeight;
-
-      window.scrollTo({
-        top: sectionTop,
-        behavior: "smooth",
-      });
-    }
-  };
 
   return (
     <section className="py-20  bg-linear-to-b from-indigo-50 to-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-
-        <h2 
+        <h2
           className="text-4xl sm:text-5xl font-bold text-[#2d4a6f] mb-16"
           data-aos="fade-up"
         >
           How does Educate work?
         </h2>
-  
+
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-16 max-w-5xl mx-auto">
-          
           {steps.map((step, index) => (
             <React.Fragment key={step.number}>
-              <div 
+              <div
                 className="flex flex-col items-center w-full md:w-auto px-4 mb-8 md:mb-0"
                 data-aos="zoom-in"
                 data-aos-delay={index * 150}
@@ -101,25 +117,30 @@ const HowItWorks = () => {
 
               {/* Curved Connecting Line */}
               {index < steps.length - 1 && (
-                <CurvedLine direction={index === 0 ? 'down' : 'up'} index={index} />
+                <CurvedLine
+                  direction={index === 0 ? "down" : "up"}
+                  index={index}
+                />
               )}
             </React.Fragment>
           ))}
         </div>
 
-        <div 
-          className="mt-20"
-          data-aos="fade-up"
-          data-aos-delay="500"
-        >
+        <div className="mt-20" data-aos="fade-up" data-aos-delay="500">
           <p className="text-xl text-[#5a6c84] mb-8 font-medium">
-            Join over <span className="font-bold text-[#2d4a6f]">1,000 satisfied learners</span> today.
+            Join over{" "}
+            <span className="font-bold text-[#2d4a6f]">
+              1,000 satisfied learners
+            </span>{" "}
+            today.
           </p>
-          <button onClick={scrollToCourses} className="bg-[#6366f1] hover:bg-[#5558e3] text-white font-semibold py-3.5 px-10 rounded-lg shadow-lg transition-all duration-300 transform hover:-translate-y-0.5 hover:shadow-xl uppercase tracking-wide text-sm">
+          <button
+            onClick={()=>scrollToSection("courses")}
+            className="bg-[#6366f1] hover:bg-[#5558e3] text-white font-semibold py-3.5 px-10 rounded-lg shadow-lg transition-all duration-300 transform hover:-translate-y-0.5 hover:shadow-xl uppercase tracking-wide text-sm"
+          >
             Explore courses
           </button>
         </div>
-
       </div>
     </section>
   );

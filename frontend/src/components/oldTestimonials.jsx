@@ -7,7 +7,7 @@ import { fetchTestimonials } from "../utils/api";
 import "swiper/css";
 import "swiper/css/pagination";
 
-const STATIC_STUDENT_IMAGE = "/images/person.png";
+const STATIC_STUDENT_IMAGE = "/images/man1.png"; 
 
 // Helper Component for Star rating (kept the same)
 const StarRating = ({ rating }) => {
@@ -33,17 +33,20 @@ const StarRating = ({ rating }) => {
 };
 
 const StaticTestimonialImage = () => (
-  <div className="relative w-full lg:w-1/2 flex justify-center items-center mb-2 lg:mb-0 lg:pr-10 min-h-[400px]">
-    <div className="relative w-[350px] h-[450px] lg:w-[400px] lg:h-[500px]">
-      <img
-        src={STATIC_STUDENT_IMAGE}
-        alt="Student Testimonial"
-        className="absolute pl-4 top-0 left-0 w-full h-full object-contain z-60"
-      />
-    </div>  
-  </div>
+    <div className="relative w-full lg:w-1/2 flex justify-center items-center mb-8 lg:mb-0 lg:pr-10 min-h-[400px]">
+        <div className="relative w-[300px] h-[380px] lg:w-[350px] lg:h-[420px]">
+            {/* 1. Purple Background Shape */}
+            <div className="absolute w-full h-[50%] bg-[#b9adda] rounded-[10px] transform  top-[43%] left-[5%] z-40"></div>
+            {/* 2. Green Foreground Shape  */}
+            <div className="absolute w-full h-[50%] bg-[#8ed3ac] rounded-[10px] bottom-[-1%] left-[-4%] transform z-20"></div>
+            <img
+                src={STATIC_STUDENT_IMAGE} 
+                alt="Student Testimonial"
+                className="absolute pl-4 top-0 left-0 w-full h-full object-contain z-60" 
+            />
+        </div>
+    </div>
 );
-
 const TestimonialContent = ({ testimonial }) => (
   <div className="w-full lg:w-1/2 text-center lg:text-left p-4">
     <blockquote className="text-gray-600 italic mb-4 text-lg leading-relaxed relative">
@@ -70,10 +73,10 @@ const TestimonialsSection = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  useEffect(() => {
+useEffect(() => {
     const loadTestimonials = async () => {
       try {
-        const data = await fetchTestimonials();
+        const data = await fetchTestimonials(); 
         setTestimonials(data);
         setError(null);
       } catch (err) {
@@ -84,7 +87,7 @@ const TestimonialsSection = () => {
     };
 
     loadTestimonials();
-  }, []);
+  }, []); 
 
   if (loading)
     return (
@@ -102,9 +105,9 @@ const TestimonialsSection = () => {
     );
 
   return (
-    <section className="py-12 bg-linear-to-b from-indigo-50 to-indigo-50">
+    <section className="py-20 bg-linear-to-b from-indigo-50 to-indigo-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 text-center">
+        <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4 text-center">
           What Our Student Says
         </h2>
         <div className="flex flex-col lg:flex-row items-center justify-center  max-w-5xl mx-auto min-h-[400px] lg:p-12">
@@ -116,7 +119,7 @@ const TestimonialsSection = () => {
             pagination={{ clickable: true }}
             autoplay={{ delay: 5000, disableOnInteraction: false }}
             loop={true}
-            className="w-full lg:w-1/2 h-full pb-16"
+            className="w-full lg:w-1/2 h-full pb-16" 
           >
             {testimonials.map((testimonial, index) => (
               <SwiperSlide
