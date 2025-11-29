@@ -6,6 +6,9 @@ import Navbar from "./components/Navbar";
 import HeroSection from "./components/Hero";
 import CoursesSection from "./components/CoursesSection";
 import HowItWorks from "./components/HowItWorks";
+// import SeatTable from "./components/SeatTable";
+import TestimonialsSection from "./components/Testimonials";
+import SeatPriceSection from "./components/SeatPriceSection";
 
 function App() {
   useEffect(() => {
@@ -20,6 +23,8 @@ function App() {
       <HeroSection />
       <CoursesSection />
       <HowItWorks />
+      <SeatPriceSection />
+      <TestimonialsSection />
     </>
   );
 }

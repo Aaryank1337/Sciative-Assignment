@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
-// Using simple data structure for the steps
 const steps = [
   {
     number: 1,
-    title: "Browse Course from our expert contributor",
+    title: "Browse course from our expert contributor",
   },
   {
     number: 2,
@@ -12,65 +13,101 @@ const steps = [
   },
   {
     number: 3,
-    title: "That's start learning right away",
+    title: "That's Start learning right away",
   },
 ];
 
-const HowItWorks = () => {
+// SVG Curved Dotted Line Component
+const CurvedLine = ({ direction, index }) => {
+  const pathD = direction === 'down' 
+    ? "M 0 20 Q 60 60, 120 20"
+    : "M 0 40 Q 60 0, 120 40";
+  
   return (
-    <section className="py-20 bg-gray-50">
+    <svg 
+      className="hidden md:block mx-4 mt-6" 
+      width="120" 
+      height="60" 
+      viewBox="0 0 120 60"
+      style={{ flexShrink: 0 }}
+      data-aos="fade"
+      data-aos-delay={index * 150 + 100}
+    >
+      <path
+        d={pathD}
+        fill="none"
+        stroke="#9ca3af"
+        strokeWidth="2"
+        strokeDasharray="6 6"
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+};
+
+const HowItWorks = () => {
+  // Initialize AOS
+  useEffect(() => {
+    AOS.init({
+      duration: 1000,
+      easing: 'ease-in-out',
+      once: true, // Animation happens only once
+      offset: 100, 
+    });
+  }, []);
+
+  return (
+    <section className="py-20  bg-linear-to-b from-indigo-50 to-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         
         {/* Title */}
         <h2 
-          className="text-3xl sm:text-4xl font-bold text-gray-900 mb-12"
-          // AOS Suggestion: data-aos="fade-up"
+          className="text-4xl sm:text-5xl font-bold text-[#2d4a6f] mb-16"
+          data-aos="fade-up"
         >
           How does Educate work?
         </h2>
         
-        {/* Steps Container */}
-        <div className="flex justify-center items-start relative mb-12">
+        {/* Steps Container with Curved Lines */}
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-16 max-w-5xl mx-auto">
           
           {steps.map((step, index) => (
             <React.Fragment key={step.number}>
-              {/* Step Item - uses w-full to ensure equal spacing */}
+              {/* Step Item */}
               <div 
-                className="flex flex-col items-center w-full max-w-xs px-4"
-                // AOS Suggestion: data-aos="zoom-in" data-aos-delay={`${index * 150}`}
+                className="flex flex-col items-center w-full md:w-auto px-4 mb-8 md:mb-0"
+                data-aos="zoom-in"
+                data-aos-delay={index * 150}
               >
                 {/* Number Circle */}
-                <div className="w-12 h-12 flex items-center justify-center rounded-full bg-indigo-600 text-white font-bold text-lg mb-4 shadow-lg ring-4 ring-indigo-200">
+                <div className="w-16 h-16 flex items-center justify-center rounded-full bg-[#7dd3a0] text-white font-bold text-2xl mb-6 shadow-lg">
                   {step.number}
                 </div>
                 {/* Title */}
-                <p className="text-gray-700 font-medium max-w-[150px] mx-auto">
+                <p className="text-[#5a6c84] font-medium text-base max-w-[180px] mx-auto leading-snug">
                   {step.title}
                 </p>
               </div>
 
-              {/* Connecting Line (Styled as Dotted/Dashed for Visual) */}
+              {/* Curved Connecting Line */}
               {index < steps.length - 1 && (
-                <div 
-                  className="flex-1 mt-6 hidden sm:flex items-start"
-                  // AOS Suggestion: data-aos="fade-zoom-in" data-aos-delay={`${index * 150 + 100}`}
-                >
-                  <div className="border-t border-dashed border-gray-300 w-full h-0 mt-2"></div>
-                </div>
+                <CurvedLine direction={index === 0 ? 'down' : 'up'} index={index} />
               )}
             </React.Fragment>
           ))}
         </div>
 
         {/* Closing Text and CTA */}
-        <div className="mt-16" 
-             // AOS Suggestion: data-aos="fade-up" data-aos-delay="500"
+        <div 
+          className="mt-20"
+          data-aos="fade-up"
+          data-aos-delay="500"
         >
-          <p className="text-xl text-gray-700 mb-6">
-            Join over <span className="font-extrabold text-indigo-700">1,000 satisfied learners</span> today.
+          <p className="text-xl text-[#5a6c84] mb-8 font-medium">
+            Join over <span className="font-bold text-[#2d4a6f]">1,000 satisfied learners</span> today.
           </p>
-          <button className="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 px-8 rounded-lg shadow-lg transition duration-300 ease-in-out transform hover:scale-105">
-            Explore Courses
+          <button className="bg-[#6366f1] hover:bg-[#5558e3] text-white font-semibold py-3.5 px-10 rounded-lg shadow-lg transition-all duration-300 transform hover:-translate-y-0.5 hover:shadow-xl uppercase tracking-wide text-sm">
+            Explore courses
           </button>
         </div>
 
