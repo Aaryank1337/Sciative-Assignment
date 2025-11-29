@@ -18,7 +18,6 @@ const HeroSection = () => {
           readable content of a page when looking at its layout.
         </p>
 
-        {/* CTA Button */}
         <button className="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 px-8 rounded-lg shadow-lg text-lg transition duration-300 ease-in-out transform hover:-translate-y-1">
           Start a course
         </button>

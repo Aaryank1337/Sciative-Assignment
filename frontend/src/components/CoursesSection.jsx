@@ -29,15 +29,30 @@ const CoursesSection = () => {
     },
   ];
 
+    const scrollToCourses = () => {
+    const section = document.getElementById("courses");
+    if (section) {
+      const navbarHeight = 64;
+      const sectionTop = section.offsetTop - navbarHeight;
+
+      window.scrollTo({
+        top: sectionTop,
+        behavior: "smooth",
+      });
+    }
+  };
+
   return (
-    <section className="py-16 sm:py-20 bg-linear-to-b from-white to-gray-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header and CTA */}
+    <section className="py-10 sm:py-14 bg-linear-to-b from-white to-gray-50">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-12 gap-6">
-          <h2 className="text-4xl sm:text-5xl font-bold text-[#1e3a5f]">
+          <h2 className="text-2xl sm:text-5xl font-bold text-[#1e3a5f]">
             New Courses
           </h2>
-          <button className="bg-[#6366f1] hover:bg-[#5558e3] text-white font-semibold py-3 px-8 rounded-lg transition-all duration-300 text-sm tracking-wider uppercase shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
+          <button
+            onClick={scrollToCourses}
+            className="bg-[#7c3aed] hover:bg-[#5558e3] text-white font-semibold py-3 px-8 rounded-lg transition-all duration-300 text-sm tracking-wider uppercase shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+          >
             EXPLORE COURSES
           </button>
         </div>

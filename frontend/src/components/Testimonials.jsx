@@ -2,12 +2,12 @@ import React, { useState, useEffect } from "react";
 import { Star } from "lucide-react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Autoplay } from "swiper/modules";
+import { fetchTestimonials } from "../utils/api";
 
 import "swiper/css";
 import "swiper/css/pagination";
 
-const API_URL = "https://viaje.ai/testimonial_api/";
-const STATIC_STUDENT_IMAGE = "/images/man1.png"; // ⚠️ Adjust path as needed
+const STATIC_STUDENT_IMAGE = "/images/man1.png"; 
 
 // Helper Component for Star rating (kept the same)
 const StarRating = ({ rating }) => {
@@ -32,17 +32,13 @@ const StarRating = ({ rating }) => {
   );
 };
 
-// New Component for JUST the image and its styled background (STATIC)
 const StaticTestimonialImage = () => (
     <div className="relative w-full lg:w-1/2 flex justify-center items-center mb-8 lg:mb-0 lg:pr-10 min-h-[400px]">
         <div className="relative w-[300px] h-[380px] lg:w-[350px] lg:h-[420px]">
-            {/* 1. Purple Background Shape - behind the image */}
+            {/* 1. Purple Background Shape */}
             <div className="absolute w-full h-[50%] bg-[#b9adda] rounded-[10px] transform  top-[43%] left-[5%] z-40"></div>
-            
-            {/* 2. Green Foreground Shape - overlapping bottom */}
+            {/* 2. Green Foreground Shape  */}
             <div className="absolute w-full h-[50%] bg-[#8ed3ac] rounded-[10px] bottom-[-1%] left-[-4%] transform z-20"></div>
-
-            {/* Actual Student Image (Static) - centered in the layout */}
             <img
                 src={STATIC_STUDENT_IMAGE} 
                 alt="Student Testimonial"
@@ -51,7 +47,6 @@ const StaticTestimonialImage = () => (
         </div>
     </div>
 );
-// New Component for JUST the Testimonial Content (SLIDER DATA)
 const TestimonialContent = ({ testimonial }) => (
   <div className="w-full lg:w-1/2 text-center lg:text-left p-4">
     <blockquote className="text-gray-600 italic mb-4 text-lg leading-relaxed relative">
@@ -78,29 +73,21 @@ const TestimonialsSection = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // ... (useEffect for API fetching remains the same) ...
-  useEffect(() => {
-    fetch(API_URL)
-      .then((res) => {
-        if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
-        return res.json();
-      })
-      .then((data) => {
-        if (data && Array.isArray(data.data)) {
-          setTestimonials(data.data);
-          setError(null);
-        } else {
-          throw new Error("Invalid data structure received from API.");
-        }
-      })
-      .catch((err) => {
-        console.error("Fetching error:", err);
+useEffect(() => {
+    const loadTestimonials = async () => {
+      try {
+        const data = await fetchTestimonials(); 
+        setTestimonials(data);
+        setError(null);
+      } catch (err) {
         setError("Failed to load testimonials.");
-      })
-      .finally(() => {
+      } finally {
         setLoading(false);
-      });
-  }, []);
+      }
+    };
+
+    loadTestimonials();
+  }, []); 
 
   if (loading)
     return (
@@ -118,18 +105,13 @@ const TestimonialsSection = () => {
     );
 
   return (
-    <section className="py-20 bg-gray-50">
+    <section className="py-20 bg-linear-to-b from-indigo-50 to-indigo-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-12 text-center">
+        <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4 text-center">
           What Our Student Says
         </h2>
-
-        {/* Main Testimonial Card Layout (STATIC IMAGE + SLIDING CONTENT) */}
-        <div className="flex flex-col lg:flex-row items-center justify-center bg-white rounded-xl shadow-xl max-w-5xl mx-auto min-h-[400px] lg:p-12">
-          {/* 1. STATIC IMAGE COMPONENT (Fixed position) */}
+        <div className="flex flex-col lg:flex-row items-center justify-center  max-w-5xl mx-auto min-h-[400px] lg:p-12">
           <StaticTestimonialImage />
-
-          {/* 2. SLIDER FOR CONTENT */}
           <Swiper
             modules={[Pagination, Autoplay]}
             spaceBetween={30}
@@ -137,14 +119,13 @@ const TestimonialsSection = () => {
             pagination={{ clickable: true }}
             autoplay={{ delay: 5000, disableOnInteraction: false }}
             loop={true}
-            className="w-full lg:w-1/2 h-full pb-16" // Use w-1/2 to take up half the parent div
+            className="w-full lg:w-1/2 h-full pb-16" 
           >
             {testimonials.map((testimonial, index) => (
               <SwiperSlide
                 key={index}
                 className="flex justify-center items-center"
               >
-                {/* Use the content component here */}
                 <TestimonialContent testimonial={testimonial} />
               </SwiperSlide>
             ))}

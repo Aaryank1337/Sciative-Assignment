@@ -1,8 +1,8 @@
 import React from 'react';
-import { X } from 'lucide-react'; // Using lucide-react for the close icon
+import { X } from 'lucide-react'; 
 
 const VideoPopup = ({ videoId, onClose }) => {
-  if (!videoId) return null; // Don't render if no videoId
+  if (!videoId) return null; 
 
   return (
     <div className="fixed inset-0 z-999 bg-black bg-opacity-75 flex items-center justify-center p-4" onClick={onClose}>

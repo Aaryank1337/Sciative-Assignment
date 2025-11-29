@@ -14,17 +14,28 @@ function App() {
   useEffect(() => {
     AOS.init({
       duration: 800,
-      once: true, // Only run once on scroll
+      once: true,
     });
   }, []);
+  
   return (
     <>
       <Navbar />
-      <HeroSection />
-      <CoursesSection />
-      <HowItWorks />
-      <SeatPriceSection />
-      <TestimonialsSection />
+      <div id="home">
+        <HeroSection />
+      </div>
+      <div id="courses">
+        <CoursesSection />
+      </div>
+      <div id="programs">
+        <HowItWorks />
+      </div>
+      <div id="admission">
+        <SeatPriceSection />
+      </div>
+      <div id="testimonial">
+        <TestimonialsSection />
+      </div>
     </>
   );
 }

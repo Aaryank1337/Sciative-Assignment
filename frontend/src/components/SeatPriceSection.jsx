@@ -1,15 +1,13 @@
 import React from 'react';
 import SeatTable from './SeatTable';
-import { CheckCircle } from 'lucide-react'; // Using lucide-react for the checklist icons
+import { CheckCircle } from 'lucide-react'; 
 
 const SeatPriceSection = () => {
     return (
-        <section className="py-20 bg-white">
+        <section className="py-12    bg-white">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 
                 <div className="flex flex-col lg:flex-row justify-between items-start lg:space-x-12">
-                    
-                    {/* Left Column: Text and Features */}
                     <div className="lg:w-1/2 pl-10 pt-20 mb-10 lg:mb-0">
                         <h2 className="text-5xl font-bold text-gray-900 mb-6 pb-1">
                             Get the <span className="text-indigo-700">Seat price</span>
@@ -18,7 +16,6 @@ const SeatPriceSection = () => {
                             It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.
                         </p>
 
-                        {/* Feature Check List */}
                         <ul className="space-y-6 mb-8">
                             <li className="flex items-start text-lg text-gray-700">
                                 <CheckCircle className="h-6 w-6 text-green-500 mr-3 mt-1 shrink-0" />
@@ -46,7 +43,6 @@ const SeatPriceSection = () => {
                         </a>
                     </div>
 
-                    {/* Right Column: Seat Table */}
                     <div className="lg:w-1/2 flex justify-center ">
                         <SeatTable />
                     </div>
